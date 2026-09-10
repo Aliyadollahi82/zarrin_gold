@@ -1,0 +1,97 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: var(--font-vazirmatn), ui-sans-serif, system-ui, sans-serif;
+
+  --color-ink: #0e0c09;
+  --color-ink-soft: #17140f;
+  --color-ink-line: #2a251c;
+
+  --color-cream: #f6f1e7;
+  --color-cream-dim: #ece4d2;
+
+  --color-gold-100: #f2e2b8;
+  --color-gold-300: #e0bd6f;
+  --color-gold-500: #c69a45;
+  --color-gold-600: #a97f35;
+  --color-gold-800: #6e5122;
+
+  --shadow-gold: 0 1px 0 0 rgb(198 154 69 / 0.35);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--color-ink);
+  color: var(--color-cream);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+}
+
+::selection {
+  background-color: var(--color-gold-500);
+  color: var(--color-ink);
+}
+
+.container-page {
+  width: 100%;
+  max-width: 84rem;
+  margin-inline: auto;
+  padding-inline: 1.25rem;
+}
+
+@media (min-width: 1024px) {
+  .container-page {
+    padding-inline: 2.5rem;
+  }
+}
+
+.gold-underline {
+  position: relative;
+}
+
+.gold-underline::after {
+  content: "";
+  position: absolute;
+  inset-inline-start: 0;
+  bottom: -0.6rem;
+  height: 2px;
+  width: 2.75rem;
+  background: linear-gradient(
+    to left,
+    var(--color-gold-500),
+    transparent
+  );
+}
+
+.focus-ring {
+  outline: none;
+}
+
+.focus-ring:focus-visible {
+  outline: 2px solid var(--color-gold-300);
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+@keyframes heroTextFade {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
