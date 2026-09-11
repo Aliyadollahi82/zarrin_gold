@@ -5,19 +5,22 @@ import { ChevronIcon } from "./icons";
 
 const slides = [
   {
-    image: "/images/hero-1.jpg",
+    desktopImage: "/images/hero-1.jpg",
+    mobileImage: "/images/hero-1-mobile.jpg",
     eyebrow: "ZARRIN",
     title: "زرین؛ زیبایی ماندگار",
     text: "مجموعه‌ای از خاص‌ترین و زیباترین زیورآلات طلا و جواهر برای لحظات ارزشمند زندگی شما.",
   },
   {
-    image: "/images/hero-2.jpg",
+    desktopImage: "/images/hero-2.jpg",
+    mobileImage: "/images/hero-2-mobile.jpg",
     eyebrow: "کالکشن جدید",
     title: "درخشش برای هر مناسبت",
     text: "زیورآلاتی خاص و چشم‌نواز که زیبایی و اصالت را در کنار یکدیگر به شما هدیه می‌دهند.",
   },
   {
-    image: "/images/hero-3.jpg",
+    desktopImage: "/images/hero-3.jpg",
+    mobileImage: "/images/hero-3-mobile.jpg",
     eyebrow: "سفارشی‌سازی",
     title: "جواهری با امضای شما",
     text: "طرح دلخواهتان را با سنگ و حکاکی اختصاصی، به همراه طراحان زرین بسازید.",
@@ -70,29 +73,59 @@ export function Hero() {
 
       {slides.map((slide, i) => (
         <div
-          key={slide.image}
+          key={slide.desktopImage}
           className={`
             absolute inset-0
-            bg-cover bg-center bg-no-repeat
             transition-opacity duration-700 ease-in-out
-
             ${i === index ? "opacity-100" : "opacity-0"}
           `}
-          style={{
-            backgroundImage: `url("${slide.image}")`,
-          }}
-        />
+        >
+          {/* ================================================
+              MOBILE IMAGE
+              فقط برای موبایل
+          ================================================= */}
+          <div
+            className="
+              absolute inset-0
+              bg-cover
+              bg-center
+              bg-no-repeat
+              md:hidden
+            "
+            style={{
+              backgroundImage: `url("${slide.mobileImage}")`,
+            }}
+          />
+
+          {/* ================================================
+              DESKTOP / TABLET IMAGE
+              از تبلت به بالا
+          ================================================= */}
+          <div
+            className="
+              absolute inset-0
+              hidden
+              bg-cover
+              bg-center
+              bg-no-repeat
+              md:block
+            "
+            style={{
+              backgroundImage: `url("${slide.desktopImage}")`,
+            }}
+          />
+        </div>
       ))}
 
       {/* =====================================================
           LIGHT OVERLAY
-          سایه بسیار کمتر از قبل
+          سایه خیلی ملایم
       ====================================================== */}
 
       <div className="absolute inset-0 bg-black/10" />
 
       {/* =====================================================
-          VERY LIGHT GRADIENT
+          GRADIENT
           فقط برای خوانایی متن
       ====================================================== */}
 
@@ -110,7 +143,17 @@ export function Hero() {
           CONTENT
       ====================================================== */}
 
-      <div className="container-page relative z-10 flex h-full items-center justify-center px-12 sm:px-14">
+      <div
+        className="
+          container-page
+          relative z-10
+          flex h-full
+          items-center
+          justify-center
+          px-12
+          sm:px-14
+        "
+      >
         <div
           key={index}
           className="
@@ -151,9 +194,7 @@ export function Hero() {
               text-white
 
               sm:text-3xl
-
               md:text-4xl
-
               lg:text-5xl
             "
           >
